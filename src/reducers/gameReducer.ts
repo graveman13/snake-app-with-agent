@@ -56,7 +56,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
     case GameActionType.RESET_GAME:
       return createInitialGameState();
 
-    case GameActionType.CHANGE_DIRECTION:
+    case GameActionType.CHANGE_DIRECTION: {
       if (action.payload && typeof action.payload === 'string') {
         const newDirection = action.payload as Direction;
         
@@ -73,8 +73,9 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         };
       }
       return state;
+    }
 
-    case GameActionType.MOVE_SNAKE:
+    case GameActionType.MOVE_SNAKE: {
       if (state.status !== 'playing') {
         return state;
       }
@@ -115,6 +116,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         ...state,
         snake: moveSnake(state.snake)
       };
+    }
 
     default:
       return state;
