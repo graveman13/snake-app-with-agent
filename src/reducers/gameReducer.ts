@@ -20,7 +20,10 @@ export const createInitialGameState = (): GameState => {
     food: generateRandomFood(initialSnake.body),
     score: 0,
     status: 'ready',
-    gridSize: GAME_CONFIG.GRID_SIZE
+    gridSize: {
+      width: GAME_CONFIG.GRID_SIZE.WIDTH,
+      height: GAME_CONFIG.GRID_SIZE.HEIGHT
+    }
   };
 };
 
@@ -87,8 +90,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         };
       }
 
-      // Перевірка колізій з тілом змійки
-      if (checkSelfCollision(nextHead, state.snake.body)) {
+      // Перевірка колізій з тілом змійки (без голови)
+      if (checkSelfCollision(nextHead, state.snake.body.slice(1))) {
         return {
           ...state,
           status: 'gameOver'

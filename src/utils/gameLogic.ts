@@ -50,8 +50,8 @@ export const checkWallCollision = (position: Position): boolean => {
   return position.x < 0 || position.x >= WIDTH || position.y < 0 || position.y >= HEIGHT;
 };
 
-export const checkSelfCollision = (head: Position, body: Position[]): boolean => {
-  return body.some(segment => segment.x === head.x && segment.y === head.y);
+export const checkSelfCollision = (head: Position, bodyWithoutHead: Position[]): boolean => {
+  return bodyWithoutHead.some(segment => segment.x === head.x && segment.y === head.y);
 };
 
 export const checkFoodCollision = (head: Position, food: Food): boolean => {
