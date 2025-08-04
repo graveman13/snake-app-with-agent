@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: mode === 'production' ? '/snake-app-with-agent/' : '/',
+  base: command === 'build' ? '/snake-app-with-agent/' : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
